@@ -15,13 +15,13 @@ public class ReflectionTest {
 	public void test3() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 		AggregationSchema schema = new AggregationSchema();
 		
-		for (FieldInfo fieldInfo : schema.keySchema.getFieldInfoList()) {
+		for (FieldInfo fieldInfo : schema.rowSchema.getFieldInfoList()) {
 			System.out.println(fieldInfo.toString());
 		}
 		
 		String fieldName = "alpha";
-		schema.keySchema.addField(fieldName, DataType.CHARACTER);
-		for (FieldInfo fieldInfo : schema.keySchema.getFieldInfoList()) {
+		schema.rowSchema.addField(fieldName, DataType.CHARACTER);
+		for (FieldInfo fieldInfo : schema.rowSchema.getFieldInfoList()) {
 			System.out.println(fieldInfo.toString());
 		}
 	}
@@ -56,5 +56,24 @@ public class ReflectionTest {
 		rowMeta.addField("character", DataType.CHARACTER);
 		
 		Assert.assertTrue(rowMeta.isKeyPresent("age"));
+	}
+	
+	@Test
+	public void test6()
+	{
+		RowMeta originalSchema = new RowMeta();
+		originalSchema.addField("publisher", DataType.STRING);
+		originalSchema.addField("advertiser", DataType.STRING);
+		originalSchema.addField("location", DataType.STRING);
+		originalSchema.addField("cost", DataType.LONG);
+		originalSchema.addField("impressions", DataType.LONG);
+		originalSchema.addField("clicks", DataType.BOOLEAN);
+		
+		String parameters[] = {"publisher", "cost"};
+		
+		AggregationSchema schema = new AggregationSchema();
+		schema.rowSchema = originalSchema.subset(parameters);
+		
+		System.out.println(schema.rowSchema.toString());
 	}
 }

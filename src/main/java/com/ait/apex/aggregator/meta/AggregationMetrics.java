@@ -4,45 +4,34 @@ import java.util.Arrays;
 
 public class AggregationMetrics
 {
-	String[] keys;
-	String[] vals;
+	String[] parameters;
 	AggregationTypes aggTypes;
 	
-	public AggregationMetrics(String[] keys, String[] vals, AggregationTypes aggTypes) {
-		this.keys = keys;
-		this.vals = vals;
+	public AggregationMetrics(String[] parameters, AggregationTypes aggTypes) {
+		this.parameters = parameters;
 		this.aggTypes = aggTypes;
 	}
 	
-	public String[] getKeys()
-	{
-		return keys;
-	}
-
-	public void setKeys(String[] keys)
-	{
-		this.keys = keys;
+	public String[] getParameters() {
+		return parameters;
 	}
 	
-	public String[] getVals() {	return vals; }
+	public void setParameters(String[] parameters) {
+		this.parameters = parameters;
+	}
 	
-	public void setVals(String[] vals) { this.vals = vals;	}
-	
-	public AggregationTypes getAggTypes()
-	{
+	public AggregationTypes getAggTypes() {
 		return aggTypes;
 	}
-
-	public void setAggTypes(AggregationTypes aggTypes)
-	{
+	
+	public void setAggTypes(AggregationTypes aggTypes) {
 		this.aggTypes = aggTypes;
 	}
 	
 	@Override
 	public String toString() {
 		return "AggregationMetrics{" +
-				"keys=" + Arrays.toString(keys) +
-				", vals=" + Arrays.toString(vals) +
+				"parameters=" + Arrays.toString(parameters) +
 				", aggTypes=" + aggTypes +
 				'}';
 	}

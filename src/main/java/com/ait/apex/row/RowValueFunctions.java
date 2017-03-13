@@ -10,7 +10,6 @@ public class RowValueFunctions {
 	public int readInteger(Row row, RowMeta rowMeta)
 	{
 		int intVal = Platform.getInt(row.dataBytes, Platform.INT_ARRAY_OFFSET + readOffset);
-		readOffset += 8;
 		return intVal;
 	}
 	

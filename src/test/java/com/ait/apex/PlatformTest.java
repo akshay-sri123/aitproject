@@ -48,4 +48,12 @@ public class PlatformTest
 		System.out.println(Platform.LONG_ARRAY_OFFSET);
 		System.out.println(Platform.DOUBLE_ARRAY_OFFSET);
 	}
+	
+	@Test
+	public void newTest()
+	{
+		byte[] data = null;
+		Platform.putLong(data, Platform.LONG_ARRAY_OFFSET, 1);
+		System.out.println(Arrays.toString(data));
+	}
 }

@@ -21,9 +21,9 @@ public class AggSchemaTest {
 		rowMeta.addField("number", DataType.LONG);
 		rowMeta.addField("character", DataType.CHARACTER);
 		
-		String[] keys = {"name","age"};
+		String[] keys = {"name", "age"};
 		String vals[] = {"number"};
-		AggregationMetrics metrics = new AggregationMetrics(keys, vals,  AggregationTypes.MAX);
+		AggregationMetrics metrics = new AggregationMetrics(keys, AggregationTypes.MAX);
 		List<AggregationMetrics> metricsList = new ArrayList<>();
 		metricsList.add(metrics);
 		
@@ -34,28 +34,4 @@ public class AggSchemaTest {
 		System.out.println(aggregationSchema.toString());
 	}
 	
-	@Test
-	public void aggTestWithTwo() throws NoSuchFieldException, IllegalAccessException {
-		RowMeta rowMeta = new RowMeta();
-		rowMeta.addField("name", DataType.STRING);
-		rowMeta.addField("age", DataType.INTEGER);
-		rowMeta.addField("number", DataType.LONG);
-		rowMeta.addField("character", DataType.CHARACTER);
-		
-		List<AggregationMetrics> metricsList = new ArrayList<>();
-		String[] keys = {"number"};
-		String vals[] = {"cost"};
-		
-		metricsList.add(new AggregationMetrics(new String[]{"name"}, vals, AggregationTypes.COUNT));
-		metricsList.add(new AggregationMetrics(new String[]{"name"}, vals,AggregationTypes.MAX));
-		metricsList.add(new AggregationMetrics(new String[]{"name","age","number"}, vals,AggregationTypes.MAX));
-		
-		AggregationHelper aggregationHelper = new AggregationHelper();
-		List<AggregationSchema> schemaList = aggregationHelper.createAggregationSchema(rowMeta, metricsList);
-		
-		for(AggregationSchema schema : schemaList)
-		{
-			System.out.println(schema.toString());
-		}
-	}
 }

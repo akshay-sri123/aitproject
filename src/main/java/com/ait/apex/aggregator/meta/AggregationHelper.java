@@ -15,23 +15,22 @@ public class AggregationHelper {
 		for (AggregationMetrics aggregationMeta : aggregationMetrics) {
 			
 			AggregationSchema schema = new AggregationSchema();
-
-			schema.keySchema = originalSchema.subset(aggregationMeta.getKeys());
+			
 			switch (aggregationMeta.getAggTypes()) {
 				case COUNT:
-					schema.valueSchema = originalSchema.subset(aggregationMeta.getVals());
+					schema.rowSchema = originalSchema.subset(aggregationMeta.getParameters());
 					break;
 				
 				case SUM:
-					schema.valueSchema = originalSchema.subset(aggregationMeta.getVals());
+					schema.rowSchema = originalSchema.subset(aggregationMeta.getParameters());
 					break;
 				
 				case MIN:
-					schema.valueSchema = originalSchema.subset(aggregationMeta.getVals());
+					schema.rowSchema = originalSchema.subset(aggregationMeta.getParameters());
 					break;
 				
 				case MAX:
-					schema.valueSchema = originalSchema.subset(aggregationMeta.getVals());
+					schema.rowSchema = originalSchema.subset(aggregationMeta.getParameters());
 					break;
 			}
 			schemaList.add(schema);
